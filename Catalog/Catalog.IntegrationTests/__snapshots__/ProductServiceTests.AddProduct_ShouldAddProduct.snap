@@ -1,0 +1,12 @@
+﻿[
+  {
+    "ProductId": 6,
+    "Name": "Product-new",
+    "CategoryId": 1,
+    "Description": null,
+    "Image": null,
+    "Price": 100.0,
+    "Amount": 100,
+    "Category": null
+  }
+]

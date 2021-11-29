@@ -1,0 +1,52 @@
+﻿[
+  {
+    "ProductId": 1,
+    "Name": "product-1-1",
+    "CategoryId": 1,
+    "Description": null,
+    "Image": null,
+    "Price": 1.00,
+    "Amount": 1,
+    "Category": null
+  },
+  {
+    "ProductId": 2,
+    "Name": "product-1-2",
+    "CategoryId": 1,
+    "Description": null,
+    "Image": null,
+    "Price": 1.00,
+    "Amount": 1,
+    "Category": null
+  },
+  {
+    "ProductId": 3,
+    "Name": "product-2-1",
+    "CategoryId": 2,
+    "Description": null,
+    "Image": null,
+    "Price": 1.00,
+    "Amount": 1,
+    "Category": null
+  },
+  {
+    "ProductId": 4,
+    "Name": "product-1-1-1",
+    "CategoryId": 3,
+    "Description": null,
+    "Image": null,
+    "Price": 3.00,
+    "Amount": 3,
+    "Category": null
+  },
+  {
+    "ProductId": 5,
+    "Name": "product-1-1-2",
+    "CategoryId": 3,
+    "Description": null,
+    "Image": null,
+    "Price": 4.00,
+    "Amount": 4,
+    "Category": null
+  }
+]

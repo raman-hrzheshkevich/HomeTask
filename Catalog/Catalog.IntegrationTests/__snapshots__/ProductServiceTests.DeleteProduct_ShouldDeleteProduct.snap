@@ -1,0 +1,33 @@
+﻿[
+  {
+    "CategoryId": 1,
+    "Name": "Category-1",
+    "Image": "imageUrl",
+    "ParentCategoryId": null,
+    "Parent": null,
+    "Products": null
+  },
+  {
+    "CategoryId": 2,
+    "Name": "Category-2",
+    "Image": null,
+    "ParentCategoryId": null,
+    "Parent": null,
+    "Products": null
+  },
+  {
+    "CategoryId": 3,
+    "Name": "Category-1-1",
+    "Image": null,
+    "ParentCategoryId": 1,
+    "Parent": {
+      "CategoryId": 1,
+      "Name": "Category-1",
+      "Image": "imageUrl",
+      "ParentCategoryId": null,
+      "Parent": null,
+      "Products": null
+    },
+    "Products": null
+  }
+]

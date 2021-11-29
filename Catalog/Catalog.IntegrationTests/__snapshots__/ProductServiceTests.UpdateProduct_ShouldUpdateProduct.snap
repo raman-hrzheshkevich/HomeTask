@@ -1,0 +1,10 @@
+﻿{
+  "ProductId": 1,
+  "Name": "Changed name",
+  "CategoryId": 1,
+  "Description": null,
+  "Image": null,
+  "Price": 999.0,
+  "Amount": 999,
+  "Category": null
+}

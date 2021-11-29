@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Carting.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Carting.Web.Controllers.CartController">
+            <summary>
+            The Cart API Controller.
+            </summary>
+        </member>
+        <member name="M:Carting.Web.Controllers.CartController.GetCart(System.String)">
+            <summary>Gets the cart.</summary>
+            <param name="cartId">The cart identifier.</param>
+            <response code="200">The cart was retrieved successfully.</response>
+            <response code="404">The cart was not found.</response>
+            <response code="400">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications</response>
+            <response code="500">A server fault occurred</response>
+        </member>
+        <member name="M:Carting.Web.Controllers.CartController.AddCartItem(System.String,Carting.Data.Services.Models.CartItemModel)">
+            <summary>Adds item to the cart.</summary>
+            <param name="cartId">The cart identifier.</param>
+            <param name="model">The model.</param>
+            <response code="200">Item was successfully added to the cart.</response>
+            <response code="404">The cart was not found.</response>
+            <response code="400">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications</response>
+            <response code="500">A server fault occurred</response>
+        </member>
+        <member name="M:Carting.Web.Controllers.CartController.DeleteCartItem(System.String,System.Int32)">
+            <summary>Deletes the cart item.</summary>
+            <param name="cartId">The cart identifier.</param>
+            <param name="itemId">The item identifier.</param>
+            <response code="200">Item was successfully deleted from the cart.</response>
+            <response code="404">The cart was not found.</response>
+            <response code="400">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications</response>
+            <response code="500">A server fault occurred</response>
+        </member>
+        <member name="M:Carting.Web.Controllers.CartController.GetCartItems(System.String)">
+            <summary>Gets the cart items.</summary>
+            <param name="cartId">The cart identifier.</param>
+            <returns>
+            List of cart items.
+            </returns>
+            <response code="200">List of cart items.</response>
+            <response code="404">The cart was not found.</response>
+            <response code="400">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications</response>
+            <response code="500">A server fault occurred</response>
+        </member>
+    </members>
+</doc>
