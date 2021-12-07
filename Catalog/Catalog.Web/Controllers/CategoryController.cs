@@ -39,9 +39,9 @@ namespace Catalog.Web.Controllers
 		}
 
 		[HttpPut("{categoryId:long}")]
-		public async Task<IActionResult> UpdateCategory([FromBody] CategoryModel category)
+		public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId, [FromBody] CategoryModel category)
 		{
-			await catalogService.UpdateCategory(category);
+			await catalogService.UpdateCategory(categoryId, category);
 
 			return NoContent();
 		}

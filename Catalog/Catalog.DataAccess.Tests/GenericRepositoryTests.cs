@@ -10,7 +10,7 @@ namespace Catalog.DataAccess.Tests
 		private const string testCategoryId = "testCategoryId";
 
 		private IGenericRepository<It.IsAnyType> repository;
-		private Mock<DbContext> contextMock = new Mock<DbContext>();
+		private Mock<CategoryContext> contextMock = new Mock<CategoryContext>();
 		private Mock<DbSet<It.IsAnyType>> dbSetMock = new Mock<DbSet<It.IsAnyType>>();
 
 		[TestInitialize]
@@ -26,7 +26,7 @@ namespace Catalog.DataAccess.Tests
 		{
 			repository.GetByID(testCategoryId);
 
-			dbSetMock.Verify(m => m.Find(testCategoryId), Times.Once);
+			dbSetMock.Verify(m => m.FindAsync(testCategoryId), Times.Once);
 		}
 
 		[TestMethod]

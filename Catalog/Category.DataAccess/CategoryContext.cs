@@ -5,6 +5,8 @@ namespace Catalog.DataAccess
 {
 	public class CategoryContext : DbContext
     {
+		public CategoryContext() : base() { }
+
 		public CategoryContext(DbContextOptions options) : base(options)
 		{
 			Database.EnsureCreated();

@@ -1,3 +1,4 @@
+using Catalog.DataAccess;
 using Catalog.DataAccess.Models;
 using Catalog.Service;
 using Catalog.Service.Models;
@@ -16,7 +17,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				CategoryService cs = new CategoryService(ctx);
+				CategoryService cs = new CategoryService(new GenericRepository<Category>(ctx));
 
 				await cs.AddCategory(new CategoryModel()
 				{
@@ -36,9 +37,9 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				CategoryService cs = new  CategoryService(ctx);
+				CategoryService cs = new  CategoryService(new GenericRepository<Category>(ctx));
 
-				await cs.UpdateCategory(new CategoryModel { CategoryId = 1, Name = "Changed name" });
+				await cs.UpdateCategory(1, new CategoryModel { CategoryId = 1, Name = "Changed name" });
 
 				Category result = ctx.Categories.Find(1);
 
@@ -51,7 +52,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				CategoryService cs = new  CategoryService(ctx);
+				CategoryService cs = new  CategoryService(new GenericRepository<Category>(ctx));
 
 				await cs.DeleteCategory(2);
 
@@ -66,7 +67,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				CategoryService cs = new CategoryService(ctx);
+				CategoryService cs = new CategoryService(new GenericRepository<Category>(ctx));
 
 				var result = await cs.GetCategories();
 

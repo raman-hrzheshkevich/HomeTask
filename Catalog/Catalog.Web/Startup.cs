@@ -36,6 +36,7 @@ namespace Catalog.Web
 			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<CategoryResource>();
+			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 			services.AddDbContext<CategoryContext>();
 
 			services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

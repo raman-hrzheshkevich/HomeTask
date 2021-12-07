@@ -37,7 +37,7 @@ namespace Catalog.Web.Controllers
 		[HttpPut("{productId:long}")]
 		public async Task<IActionResult> UpdateProduct([FromRoute] int productId, [FromBody] ProductModel product)
 		{
-			await productService.UpdateProduct(product);
+			await productService.UpdateProduct(productId, product);
 
 			return NoContent();
 		}

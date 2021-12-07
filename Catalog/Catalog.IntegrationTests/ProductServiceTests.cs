@@ -1,4 +1,5 @@
-﻿using Catalog.DataAccess.Models;
+﻿using Catalog.DataAccess;
+using Catalog.DataAccess.Models;
 using Catalog.Service;
 using Catalog.Service.Models;
 using Snapshooter.Xunit;
@@ -18,7 +19,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(ctx);
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
 
 				await productService.AddProduct(new ProductModel()
 				{
@@ -42,9 +43,9 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(ctx);
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
 
-				await productService.UpdateProduct(new ProductModel
+				await productService.UpdateProduct(1, new ProductModel
 				{
 					CategoryId = 1,
 					ProductId = 1,
@@ -64,7 +65,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(ctx);
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
 
 				await productService.DeleteProduct(2);
 
@@ -79,7 +80,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(ctx);
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
 
 				var result = await productService.GetProducts(new ProductsQuery());
 

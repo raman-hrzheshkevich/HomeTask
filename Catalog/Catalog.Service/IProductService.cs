@@ -9,6 +9,6 @@ namespace Catalog.Service
 		Task<ProductModel> AddProduct(ProductModel productModel);
 		Task DeleteProduct(int productId);
 		Task<IEnumerable<ProductModel>> GetProducts(ProductsQuery query);
-		Task UpdateProduct(ProductModel productModel);
+		Task UpdateProduct(int productId, ProductModel productModel);
 	}
 }

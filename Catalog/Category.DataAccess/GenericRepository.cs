@@ -3,21 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Catalog.DataAccess
 {
 	public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
 	{
-		internal DbContext context;
+		internal CategoryContext context;
 		internal DbSet<TEntity> dbSet;
 
-		public GenericRepository(DbContext context)
+		public GenericRepository(CategoryContext context)
 		{
 			this.context = context;
 			this.dbSet = context.Set<TEntity>();
 		}
 
-		public virtual IEnumerable<TEntity> Get(
+		public async virtual Task<ICollection<TEntity>> Get(
 			Expression<Func<TEntity, bool>> filter = null)
 		{
 			IQueryable<TEntity> query = dbSet;
@@ -27,39 +28,36 @@ namespace Catalog.DataAccess
 				query = query.Where(filter);
 			}
 
-			return query.ToList();
+			return await query.ToListAsync();
 		}
 
-		public virtual TEntity GetByID(object id)
+		public async virtual Task<TEntity> GetByID(object id)
 		{
-			return dbSet.Find(id);
+			return await dbSet.FindAsync(id);
 		}
 
-		public virtual void Insert(TEntity entity)
+		public async virtual Task<TEntity> Insert(TEntity entity) 
 		{
 			dbSet.Add(entity);
+			await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+			return entity;
 		}
 
-		public virtual void Delete(object id)
+		public async virtual Task Delete(object id)
 		{
-			TEntity entityToDelete = dbSet.Find(id);
-			Delete(entityToDelete);
-		}
-
-		public virtual void Delete(TEntity entityToDelete)
-		{
-			if (context.Entry(entityToDelete).State == EntityState.Detached)
-			{
-				dbSet.Attach(entityToDelete);
-			}
+			TEntity entityToDelete = await dbSet.FindAsync(id);
 			dbSet.Remove(entityToDelete);
 
+			await context.SaveChangesAsync().ConfigureAwait(false);
 		}
 
-		public virtual void Update(TEntity entityToUpdate)
+		public async virtual Task Update(TEntity entityToUpdate)
 		{
-			dbSet.Attach(entityToUpdate);
+			await dbSet.AddAsync(entityToUpdate);
 			context.Entry(entityToUpdate).State = EntityState.Modified;
+
+			await context.SaveChangesAsync().ConfigureAwait(false);
 		}
 	}
 }
