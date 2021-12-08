@@ -1,20 +1,16 @@
 using Carting.DataAccess.LiteDb;
+using Carting.Web.MessageBroker;
+using MessageBroker;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Carting.Web
 {
@@ -56,6 +52,11 @@ namespace Carting.Web
 			});
 
 			services.AddCartingService("LiteDb.db");
+
+			services.AddScoped<IMessageConsumer, MessageConsumer<ProductModel>>();
+			services.AddScoped<IMessageSerializer, JsonMessageSerializer>();
+			services.AddScoped<IMessageProcessor<ProductModel>, MessageProcessorService>();
+			services.AddHostedService<WorkerMessageBroker>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

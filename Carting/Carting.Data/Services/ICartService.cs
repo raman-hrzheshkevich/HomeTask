@@ -13,6 +13,10 @@ namespace Carting.Data.Services
 		void AddItem(string cartId, CartItemModel cartItem);
 		IEnumerable<CartItemModel> GetItems(string cartId);
 
+		IEnumerable<CartItemModel> GetItems();
+
+		void UpdateItem(CartItemModel itemModel);
+
 		void RemoveItem(string cartId, int itemId);
 	}
 }

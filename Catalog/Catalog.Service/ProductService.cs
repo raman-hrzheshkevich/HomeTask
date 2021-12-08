@@ -1,7 +1,7 @@
 ﻿using Catalog.DataAccess;
 using Catalog.DataAccess.Models;
 using Catalog.Service.Models;
-using Microsoft.EntityFrameworkCore;
+using MessageBroker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,12 @@ namespace Catalog.Service
 	public class ProductService : IProductService
 	{
 		private readonly IGenericRepository<Product> productRepository;
+		private readonly IMessageSender messageSender;
 
-		public ProductService(IGenericRepository<Product> productRepository)
+		public ProductService(IGenericRepository<Product> productRepository, IMessageSender messageSender)
 		{
 			this.productRepository = productRepository;
+			this.messageSender = messageSender;
 		}
 
 		public async Task<ProductModel> AddProduct(ProductModel productModel)
@@ -34,6 +36,7 @@ namespace Catalog.Service
 			product.ProductId = productId;
 
 			await productRepository.Update(product);
+			await messageSender.SendMessageAsync(product);
 		}
 
 		public async Task DeleteProduct(int productId)

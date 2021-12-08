@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.DataAccess", "Categ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Web", "Catalog.Web\Catalog.Web.csproj", "{3D235D2D-CB25-4D21-86CF-ADEF1DA33F36}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker", "..\Shared\MessageBroker\MessageBroker.csproj", "{18036794-9E29-4C9A-81D4-867D94023D48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3D235D2D-CB25-4D21-86CF-ADEF1DA33F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D235D2D-CB25-4D21-86CF-ADEF1DA33F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D235D2D-CB25-4D21-86CF-ADEF1DA33F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18036794-9E29-4C9A-81D4-867D94023D48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18036794-9E29-4C9A-81D4-867D94023D48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18036794-9E29-4C9A-81D4-867D94023D48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18036794-9E29-4C9A-81D4-867D94023D48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

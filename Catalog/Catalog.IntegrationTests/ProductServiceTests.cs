@@ -2,6 +2,8 @@
 using Catalog.DataAccess.Models;
 using Catalog.Service;
 using Catalog.Service.Models;
+using MessageBroker;
+using Moq;
 using Snapshooter.Xunit;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,14 @@ namespace Catalog.IntegrationTests
 {
 	public class ProductServiceTests
 	{
+		private Mock<IMessageSender> messageSenderMock = new Mock<IMessageSender>();
+
 		[Fact]
 		public async void AddProduct_ShouldAddProduct()
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx), messageSenderMock.Object);
 
 				await productService.AddProduct(new ProductModel()
 				{
@@ -43,7 +47,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx), messageSenderMock.Object);
 
 				await productService.UpdateProduct(1, new ProductModel
 				{
@@ -65,7 +69,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx), messageSenderMock.Object);
 
 				await productService.DeleteProduct(2);
 
@@ -80,7 +84,7 @@ namespace Catalog.IntegrationTests
 		{
 			using (var ctx = new TestCategoryContext())
 			{
-				ProductService productService = new ProductService(new GenericRepository<Product>(ctx));
+				ProductService productService = new ProductService(new GenericRepository<Product>(ctx), messageSenderMock.Object);
 
 				var result = await productService.GetProducts(new ProductsQuery());
 

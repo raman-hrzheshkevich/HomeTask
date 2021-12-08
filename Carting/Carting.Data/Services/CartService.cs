@@ -70,6 +70,18 @@ namespace Carting.Data.Services
 			return this.GetCart(cartId).CartItems;
 		}
 
+		public IEnumerable<CartItemModel> GetItems()
+		{
+			return this.repository.Get().Select(item => AutoMapper.Map<CartItemModel>(item));
+		}
+
+		public void UpdateItem(CartItemModel itemModel)
+		{
+			var cartItem = AutoMapper.Map<CartItem>(itemModel);
+
+			this.repository.Update(cartItem);
+		}
+
 		public void RemoveItem(string cartId, int itemId)
 		{
 			Guard.Argument(itemId, nameof(itemId)).NotNegative();

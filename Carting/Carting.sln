@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carting.Data.UnitTests", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carting.Data.IntegrationTests", "Carting.Data.IntegrationTests\Carting.Data.IntegrationTests.csproj", "{6FF7AFDD-F1B6-4C46-A7B1-DECCE8F7FE83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carting.Web", "Carting.Web\Carting.Web.csproj", "{2C136BBF-2B40-446A-92C3-0DD486FE9EA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carting.Web", "Carting.Web\Carting.Web.csproj", "{2C136BBF-2B40-446A-92C3-0DD486FE9EA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBroker", "..\Shared\MessageBroker\MessageBroker.csproj", "{7C87C97C-A98F-4734-A0FD-86C7020B7058}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2C136BBF-2B40-446A-92C3-0DD486FE9EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C136BBF-2B40-446A-92C3-0DD486FE9EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C136BBF-2B40-446A-92C3-0DD486FE9EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C87C97C-A98F-4734-A0FD-86C7020B7058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C87C97C-A98F-4734-A0FD-86C7020B7058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C87C97C-A98F-4734-A0FD-86C7020B7058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C87C97C-A98F-4734-A0FD-86C7020B7058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
