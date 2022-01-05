@@ -22,12 +22,24 @@ namespace ConfidentialClient
 
         public static string GetData(string accessToken)
 		{
-            var url = "https://localhost:44342/v1/categories";
+            var url = "https://localhost:44342/v1/categories/1";
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
 
-            httpRequest.Accept = "application/json";
             httpRequest.Headers["Authorization"] = $"Bearer {accessToken}";
+            httpRequest.Method = "PUT";
+            httpRequest.ContentType = "application/json";
+            httpRequest.MediaType = "application/json";
+            httpRequest.Accept = "application/json";
+
+            const string updatedImageUrl = "imageUrlTest";
+
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                string json = $"{{\"categoryId\":1,\"name\":\"Category-1\",\"image\":\"${updatedImageUrl}\",\"parentCategoryId\":null}}";
+
+                streamWriter.Write(json);
+            }
 
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
