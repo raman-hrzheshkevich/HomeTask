@@ -1,5 +1,6 @@
 ﻿using Catalog.Service;
 using Catalog.Service.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,7 @@ namespace Catalog.Web.Controllers
 		}
 
 		[HttpGet]
+		[Authorize]
 		public async Task<IActionResult> GetCategories()
 		{
 			IEnumerable<CategoryModel> result = await this.catalogService.GetCategories();
@@ -30,6 +32,7 @@ namespace Catalog.Web.Controllers
 			return Ok(result.Select(categoryResource.Create));
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpDelete("{categoryId:long}")]
 		public async Task<IActionResult> DeleteCategory([FromRoute] int categoryId)
 		{ 
@@ -38,6 +41,7 @@ namespace Catalog.Web.Controllers
 			return NoContent();
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpPut("{categoryId:long}")]
 		public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId, [FromBody] CategoryModel category)
 		{
@@ -46,6 +50,7 @@ namespace Catalog.Web.Controllers
 			return NoContent();
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpPost]
 		public async Task<IActionResult> CreateCategory([FromBody] CategoryModel category)
 		{

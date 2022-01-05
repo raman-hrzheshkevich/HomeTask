@@ -1,5 +1,6 @@
 ﻿using Catalog.Service;
 using Catalog.Service.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Catalog.Web.Controllers
 			return Ok(result);
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpDelete("{productId:long}")]
 		public async Task<IActionResult> DeleteProduct([FromRoute] int productId)
 		{ 
@@ -34,6 +36,7 @@ namespace Catalog.Web.Controllers
 			return NoContent();
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpPut("{productId:long}")]
 		public async Task<IActionResult> UpdateProduct([FromRoute] int productId, [FromBody] ProductModel product)
 		{
@@ -42,6 +45,7 @@ namespace Catalog.Web.Controllers
 			return NoContent();
 		}
 
+		[Authorize(Roles = "Task.Write")]
 		[HttpPost]
 		public async Task<IActionResult> CreateProduct([FromBody] ProductModel product)
 		{
