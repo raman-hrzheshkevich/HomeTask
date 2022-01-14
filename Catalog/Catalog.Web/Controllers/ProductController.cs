@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Catalog.Web.Controllers
@@ -19,10 +20,23 @@ namespace Catalog.Web.Controllers
 			this.productService = productService;
 		}
 
+		[Authorize()]
 		[HttpGet]
 		public async Task<IActionResult> GetProducts([FromQuery] ProductsQuery productsQuery)
 		{
 			var result = await this.productService.GetProducts(productsQuery);
+
+			return Ok(result);
+		}
+
+		[HttpGet("properties/{productId:long}")]
+		public async Task<IActionResult> GetProductProperties([FromRoute] int cartId)
+		{
+			var result = await Task.Run(() => new Dictionary<string, string>
+			{
+				{ $"testProp-1-{cartId}", $"testValue-1-{cartId}" },
+				{ $"testProp-2-{cartId}", $"testValue-2-{cartId}" },
+			});
 
 			return Ok(result);
 		}

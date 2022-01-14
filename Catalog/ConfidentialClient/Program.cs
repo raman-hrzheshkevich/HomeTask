@@ -15,41 +15,58 @@ namespace ConfidentialClient
             Console.WriteLine(accessToken);
             Console.WriteLine("----------");
 
-            var result = GetData(accessToken);
+            var internalData = GetInternalData(accessToken);
 
-            Console.WriteLine(result);
+            Console.WriteLine(internalData);
+
+            var gatewayData = GetGatewayData(accessToken);
+
+            Console.WriteLine(gatewayData);
+
         }
 
-        public static string GetData(string accessToken)
+        public static string GetGatewayData(string accessToken)
+        {
+            var url = "https://localhost:44319/api/v1/categories/1";
+            const string updatedImageUrl = "imageUrlTestApi";
+
+            return Execute(accessToken, url, updatedImageUrl);
+        }
+
+        public static string GetInternalData(string accessToken)
 		{
             var url = "https://localhost:44342/v1/categories/1";
+            const string updatedImageUrl = "imageUrlTestInternal";
 
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            return Execute(accessToken, url, updatedImageUrl);
+		}
 
-            httpRequest.Headers["Authorization"] = $"Bearer {accessToken}";
-            httpRequest.Method = "PUT";
-            httpRequest.ContentType = "application/json";
-            httpRequest.MediaType = "application/json";
-            httpRequest.Accept = "application/json";
+		private static string Execute(string accessToken, string url, string updatedImageUrl)
+		{
+			var httpRequest = (HttpWebRequest)WebRequest.Create(url);
 
-            const string updatedImageUrl = "imageUrlTest";
+			httpRequest.Headers["Authorization"] = $"Bearer {accessToken}";
+			httpRequest.Method = "PUT";
+			httpRequest.ContentType = "application/json";
+			httpRequest.MediaType = "application/json";
+			httpRequest.Accept = "application/json";
 
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                string json = $"{{\"categoryId\":1,\"name\":\"Category-1\",\"image\":\"${updatedImageUrl}\",\"parentCategoryId\":null}}";
+			using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+			{
+				string json = $"{{\"categoryId\":1,\"name\":\"Category-1\",\"image\":\"{updatedImageUrl}\",\"parentCategoryId\":null}}";
 
-                streamWriter.Write(json);
-            }
+				streamWriter.Write(json);
+			}
 
 
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                return streamReader.ReadToEnd();
-            }
-        }
+			var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+			using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+			{
+				return streamReader.ReadToEnd();
+			}
+		}
 
-        public static string GetAccessToken()
+		public static string GetAccessToken()
         {
             var tenantId = "b41b72d0-4e9f-4c26-8a69-f949f367c91d";
             var clientId = "b2c13659-9ea4-408f-a02f-5cd94cc5d4f2";

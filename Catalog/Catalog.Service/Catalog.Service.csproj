@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\MessageBroker\MessageBroker.csproj" />
-    <ProjectReference Include="..\CatalogQueue\CatalogQueue.csproj" />
     <ProjectReference Include="..\Category.DataAccess\Catalog.DataAccess.csproj" />
   </ItemGroup>
 

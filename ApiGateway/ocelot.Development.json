@@ -1,0 +1,193 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/v1/categories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/categories",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Catalog",
+      "FileCacheOptions": { "TtlSeconds": 60 }
+    },
+    {
+      "DownstreamPathTemplate": "/v1/categories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/categories",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Catalog"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/categories/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/categories/{everything}",
+      "UpstreamHttpMethod": [ "Put", "Delete" ],
+      "SwaggerKey": "Catalog"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/products",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/products",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Catalog",
+      "FileCacheOptions": { "TtlSeconds": 60 }
+    },
+    {
+      "DownstreamPathTemplate": "/v1/products",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/products",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Catalog"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/products/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/products/{everything}",
+      "UpstreamHttpMethod": [ "Put", "Delete" ],
+      "SwaggerKey": "Catalog"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/products/properties/{cartId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44342
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/products/{cartId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Catalog",
+      "Key": "ProductProperties"
+    },
+    //Carting
+    {
+      "DownstreamPathTemplate": "/v1/cart/{cartId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44331
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/cart/{cartId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Carting",
+      "FileCacheOptions": { "TtlSeconds": 60 },
+      "Key": "Cart"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/cart/{cartId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44331
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/cart/{cartId}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Carting"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/cart/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44331
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/cart/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Delete" ],
+      "SwaggerKey": "Carting"
+    },
+    {
+      "DownstreamPathTemplate": "/v2/cart/{cartId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44331
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v2/cart/{cartId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Carting",
+      "FileCacheOptions": { "TtlSeconds": 60 }
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "Catalog",
+      "Config": [
+        {
+          "Name": "Catalog API",
+          "Version": "v1",
+          "Url": "https://localhost:44342/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Carting",
+      "Config": [
+        {
+          "Name": "Carting API",
+          "Version": "v1",
+          "Url": "https://localhost:44331/swagger/v1/swagger.json"
+        },
+        {
+          "Name": "Carting API",
+          "Version": "v2",
+          "Url": "https://localhost:44331/swagger/v2/swagger.json"
+        }
+      ]
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "Cart",
+        "ProductProperties"
+      ],
+      "UpstreamPathTemplate": "/api/v1/cartInfo/{cartId}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44319"
+  }
+}

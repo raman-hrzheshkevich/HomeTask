@@ -51,7 +51,7 @@ namespace Carting.Web
 				options.SubstituteApiVersionInUrl = true;
 			});
 
-			services.AddCartingService("LiteDb.db");
+			services.AddCartingService(@"Filename=LiteDb.db;connection=shared");
 
 			services.AddScoped<IMessageConsumer, MessageConsumer<ProductModel>>();
 			services.AddScoped<IMessageSerializer, JsonMessageSerializer>();

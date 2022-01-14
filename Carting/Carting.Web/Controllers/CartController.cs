@@ -13,7 +13,7 @@ namespace Carting.Web.Controllers
 	[ApiVersion("1")]
 	[ApiVersion("2")]
 	[ApiController]
-	[Route("api/v{version:apiVersion}/[controller]")]
+	[Route("v{version:apiVersion}/cart")]
 	[Produces("application/json")]
 	[Consumes("application/json")]
 	public class CartController : ControllerBase

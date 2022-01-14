@@ -24,7 +24,6 @@ namespace Catalog.Web.Controllers
 		}
 
 		[HttpGet]
-		[Authorize]
 		public async Task<IActionResult> GetCategories()
 		{
 			IEnumerable<CategoryModel> result = await this.catalogService.GetCategories();
