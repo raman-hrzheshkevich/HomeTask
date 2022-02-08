@@ -29,8 +29,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore env.SOLUTION
+      run: dotnet restore ${{ env.SOLUTION }}
     - name: Build
-      run: dotnet build env.SOLUTION --no-restore
+      run: dotnet build ${{ env.SOLUTION }} --no-restore
     - name: Test
-      run: dotnet test env.SOLUTION --verbosity normal --no-build
+      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build
