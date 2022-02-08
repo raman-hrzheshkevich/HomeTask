@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.Service
 {
+	//Test comment
 	public class CategoryService : ICategoryService
 	{
 		private readonly IGenericRepository<Category> categoryRepository;
