@@ -30,7 +30,8 @@ namespace Carting.Web
 		/// <value>The configuration.</value>
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
+		/// <summary>Configures the services.</summary>
+		/// <param name="services">The services.</param>
 		public void ConfigureServices(IServiceCollection services)
 		{
 
