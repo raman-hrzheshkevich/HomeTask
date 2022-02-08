@@ -15,7 +15,7 @@ using System.Reflection;
 namespace Carting.Web
 {
 	/// <summary>
-	/// Startup class.
+	/// Startup.
 	/// </summary>
 	public class Startup
 	{
