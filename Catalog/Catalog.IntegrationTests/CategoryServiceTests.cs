@@ -10,6 +10,7 @@ using Xunit;
 
 namespace Catalog.IntegrationTests
 {
+	[Collection("Sequential")]
 	public class CategoryServiceTests
 	{
 		[Fact]

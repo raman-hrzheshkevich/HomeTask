@@ -14,6 +14,7 @@ using Xunit;
 
 namespace Catalog.IntegrationTests
 {
+	[Collection("Sequential")]
 	public class ProductServiceTests
 	{
 		private Mock<IMessageSender> messageSenderMock = new Mock<IMessageSender>();
