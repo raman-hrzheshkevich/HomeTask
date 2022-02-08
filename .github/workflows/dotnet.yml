@@ -1,8 +1,13 @@
-name: .NET
+name: Carting
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'Carting/**'    
+      - /ApiGateway/** 
+      - /Shared/**
+      - '!.github/workflows/**'
   pull_request:
     branches: [ main ]
 
