@@ -1,0 +1,42 @@
+name: Catalog
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Catalog/**'    
+      - /ApiGateway/** 
+      - /Shared/**
+      - '!.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+env:
+    SOLUTION: 'Catalog/Catalog.sln'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SOLUTION }}
+    - name: Build
+      run: dotnet build ${{ env.SOLUTION }} --no-restore
+    - name: Test
+      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build --logger trx --results-directory "Catalog-TestResults.trx"
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: Catalog-TestResults
+        path: Catalog-TestResults.trx
+      if: ${{ always() }}
