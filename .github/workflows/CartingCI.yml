@@ -33,4 +33,10 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.SOLUTION }} --no-restore
     - name: Test
-      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build
+      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build --logger trx --results-directory "Carting-TestResults.trx"
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: Carting-TestResults
+        path: Carting-TestResults.trx
+      if: ${{ always() }}
