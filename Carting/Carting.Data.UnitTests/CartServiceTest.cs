@@ -68,7 +68,7 @@ namespace Carting.Data.UnitTests
 			});
 
 
-			cartItemRepositoryMock.Verify(o => o.Create(It.IsAny<CartItem>()), Times.Never);
+			cartItemRepositoryMock.Verify(o => o.Create(It.IsAny<CartItem>()), Times.Once);
 		}
 	}
 }
