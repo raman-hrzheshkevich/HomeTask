@@ -32,7 +32,12 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION }}
     - name: Build
       run: dotnet build ${{ env.SOLUTION }} --no-restore
-    - name: Test
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Tests
       run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build --logger trx --results-directory "Carting-TestResults.trx"
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v2
