@@ -20,6 +20,8 @@ namespace Carting.Web.Controllers
 	{
 		private readonly ICartService cartService;
 
+		/// <summary>Initializes a new instance of the <see cref="CartController" /> class.</summary>
+		/// <param name="cartService">The cart service.</param>
 		public CartController(ICartService cartService)
 		{
 			this.cartService = cartService;

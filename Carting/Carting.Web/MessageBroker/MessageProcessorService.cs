@@ -6,15 +6,25 @@ using System.Threading.Tasks;
 
 namespace Carting.Web.MessageBroker
 {
+	/// <summary>
+	///   MessageProcessorService class.
+	/// </summary>
 	public class MessageProcessorService : IMessageProcessor<ProductModel>
 	{
 		private readonly ICartService cartService;
 
+		/// <summary>Initializes a new instance of the <see cref="MessageProcessorService" /> class.</summary>
+		/// <param name="cartService">The cart service.</param>
 		public MessageProcessorService(ICartService cartService)
 		{
 			this.cartService = cartService;
 		}
 
+		/// <summary>Processes the message.</summary>
+		/// <param name="message">The message.</param>
+		/// <returns>
+		///   <br />
+		/// </returns>
 		public Task ProcessMessage(ProductModel message)
 		{
 
