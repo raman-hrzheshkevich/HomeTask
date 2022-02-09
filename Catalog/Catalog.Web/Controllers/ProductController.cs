@@ -30,12 +30,12 @@ namespace Catalog.Web.Controllers
 		}
 
 		[HttpGet("properties/{productId:long}")]
-		public async Task<IActionResult> GetProductProperties([FromRoute] int cartId)
+		public async Task<IActionResult> GetProductProperties([FromRoute] int productId)
 		{
 			var result = await Task.Run(() => new Dictionary<string, string>
 			{
-				{ $"testProp-1-{cartId}", $"testValue-1-{cartId}" },
-				{ $"testProp-2-{cartId}", $"testValue-2-{cartId}" },
+				{ $"testProp-1-{productId}", $"testValue-1-{productId}" },
+				{ $"testProp-2-{productId}", $"testValue-2-{productId}" },
 			});
 
 			return Ok(result);
