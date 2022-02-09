@@ -33,7 +33,7 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.SOLUTION }} --no-restore
     - name: Test
-      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build --logger trx --results-directory "Catalog-TestResults.trx"
+      run: dotnet test ${{ env.SOLUTION }} --verbosity normal --no-build --logger trx --results-directory "Catalog-TestResults.trx" -p:ParallelizeTestCollections=false
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v2
       with:
