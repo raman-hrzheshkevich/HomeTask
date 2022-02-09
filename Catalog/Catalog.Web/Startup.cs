@@ -37,21 +37,25 @@ namespace Catalog.Web
 
 				opts.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
 				{
-					Type = SecuritySchemeType.OAuth2,
-					Flows = new OpenApiOAuthFlows()
-					{
-						Implicit = new OpenApiOAuthFlow()
-						{
-							Scopes = new Dictionary<string, string>
-							{
-								{ Configuration["AzureAd:Scope"] , "Access Application" },
-							},
-							AuthorizationUrl = new Uri($"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}/oauth2/v2.0/authorize"),
-							TokenUrl = new Uri($"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}/oauth2/v2.0/token"),
-						},
-					},
-				});
+					/*
+															Type = SecuritySchemeType.OAuth2,
+															Flows = new OpenApiOAuthFlows()
+															{
+																Implicit = new OpenApiOAuthFlow()
+																{
+																	Scopes = new Dictionary<string, string>
+																	{
+																		{ Configuration["AzureAd:Scope"] , "Access Application" },
+																	},
+																	AuthorizationUrl = new Uri($"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}/oauth2/v2.0/authorize"),
+																	TokenUrl = new Uri($"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}/oauth2/v2.0/token"),
+																},
+															},
+					*/
+				}
 
+
+   );
 				opts.AddSecurityRequirement(new OpenApiSecurityRequirement
 					{
 						{
